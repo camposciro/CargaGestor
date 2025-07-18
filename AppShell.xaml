@@ -3,36 +3,43 @@
     x:Class="CargaGestor.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:CargaGestor"
+    xmlns:local="clr-namespace:CargaGestor"
     Title="CargaGestor">
 
-    <TabBar>
+    <!-- Página de Login -->
+    <FlyoutItem Title="Login" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
             x:Name="menuLogin"
             Title="Login"
-            ContentTemplate="{DataTemplate pages:TelaLoginPage}"
-            Route="Login"
-            IsVisible="True" />
+            ContentTemplate="{DataTemplate local:TelaLoginPage}"
+            Route="Login" />
+    </FlyoutItem>
 
+    <!-- Página Inicial -->
+    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
             x:Name="menuHome"
             Title="Home"
-            ContentTemplate="{DataTemplate pages:HomePage}"
-            Route="Home"
-            IsVisible="False" />
+            ContentTemplate="{DataTemplate local:HomePage}"
+            Route="Home" />
+    </FlyoutItem>
 
+    <!-- Cadastro de Cargas -->
+    <FlyoutItem Title="Cadastrar Carga" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
             x:Name="menuCadastro"
             Title="Cadastrar Carga"
-            ContentTemplate="{DataTemplate pages:CadastroCargaPage}"
-            Route="CadastroCarga"
-            IsVisible="False" />
+            ContentTemplate="{DataTemplate local:CadastroCargaPage}"
+            Route="CadastroCarga" />
+    </FlyoutItem>
 
+    <!-- Configurações -->
+    <FlyoutItem Title="Configurações" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
             x:Name="menuConfiguracoes"
             Title="Configurações"
-            ContentTemplate="{DataTemplate pages:ConfigPage}"
-            Route="Configuracoes"
-            IsVisible="False" />
-    </TabBar>
+            ContentTemplate="{DataTemplate local:ConfigPage}"
+            Route="Configuracoes" />
+    </FlyoutItem>
+
 </Shell>
