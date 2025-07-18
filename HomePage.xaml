@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CargaGestor.HomePage"
+    Title="CargaGestor - Menu Principal"
+    BackgroundColor="#f0f4f8">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+
+            <Label
+                Text="📦 CargaGestor"
+                FontSize="36"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#333" />
+
+            <Label
+                Text="Gerencie suas cargas com eficiência"
+                FontSize="18"
+                HorizontalOptions="Center"
+                TextColor="#666" />
+
+            <!-- Botões principais -->
+            <Button
+                Text="🆕 Cadastrar Nova Carga"
+                FontSize="20"
+                BackgroundColor="#01A58D"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="60"
+                Clicked="OnCadastrarCargaClicked" />
+
+            <Button
+                Text="📋 Listar Cargas"
+                FontSize="20"
+                BackgroundColor="#028090"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="60"
+                Clicked="OnListarCargasClicked" />
+
+            <Button
+                Text="📈 Relatórios de Ganhos"
+                FontSize="20"
+                BackgroundColor="#05668D"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="60"
+                Clicked="OnRelatoriosClicked" />
+
+            <Button
+                Text="⏳ Controle de Status"
+                FontSize="20"
+                BackgroundColor="#028090"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="60"
+                Clicked="OnControleStatusClicked" />
+
+            <Button
+                Text="⚙️ Configurações"
+                FontSize="20"
+                BackgroundColor="#01A58D"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="60"
+                Clicked="OnConfiguracoesClicked" />
+
+            <Button
+                Text="❓ Ajuda / Suporte"
+                FontSize="20"
+                BackgroundColor="#05668D"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="60"
+                Clicked="OnAjudaClicked" />
+
+            <Button
+                Text="🚪 Sair"
+                FontSize="20"
+                BackgroundColor="#D72631"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="60"
+                Clicked="OnSairClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

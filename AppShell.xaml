@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CargaGestor.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:CargaGestor"
+    Title="CargaGestor">
+
+    <TabBar>
+        <ShellContent
+            x:Name="menuLogin"
+            Title="Login"
+            ContentTemplate="{DataTemplate pages:TelaLoginPage}"
+            Route="Login"
+            IsVisible="True" />
+
+        <ShellContent
+            x:Name="menuHome"
+            Title="Home"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="Home"
+            IsVisible="False" />
+
+        <ShellContent
+            x:Name="menuCadastro"
+            Title="Cadastrar Carga"
+            ContentTemplate="{DataTemplate pages:CadastroCargaPage}"
+            Route="CadastroCarga"
+            IsVisible="False" />
+
+        <ShellContent
+            x:Name="menuConfiguracoes"
+            Title="Configurações"
+            ContentTemplate="{DataTemplate pages:ConfigPage}"
+            Route="Configuracoes"
+            IsVisible="False" />
+    </TabBar>
+</Shell>
