@@ -1,29 +1,40 @@
-﻿namespace CargaGestor;
+﻿using Microsoft.Maui.Storage;
+
+namespace CargaGestor;
 
 public partial class ConfigPage : ContentPage
 {
-    // Simulando armazenamento local para configurações (em app real usar Preferences ou banco)
+    private const string TemaSalvoKey = "TemaEscuroAtivo";
+    private const bool TemaEscuroPadrao = false; // se nada estiver salvo, assume tema claro
+
     private bool notificacoesAtivas = true;
 
     public ConfigPage()
     {
         InitializeComponent();
 
-        // Inicializa switch do modo escuro conforme tema atual
-        switchModoEscuro.IsToggled = App.Current.UserAppTheme == AppTheme.Dark;
+        // Lê o tema salvo
+        bool temaEscuroAtivo = Preferences.Get(TemaSalvoKey, TemaEscuroPadrao);
+        App.Current.UserAppTheme = temaEscuroAtivo ? AppTheme.Dark : AppTheme.Light;
 
-        // Inicializa switch de notificações
+        switchModoEscuro.IsToggled = temaEscuroAtivo;
         switchNotificacoes.IsToggled = notificacoesAtivas;
     }
 
     private void OnSwitchModoEscuroToggled(object sender, ToggledEventArgs e)
     {
-        App.Current.UserAppTheme = e.Value ? AppTheme.Dark : AppTheme.Light;
+        bool temaEscuro = e.Value;
+
+        // Aplica o tema
+        App.Current.UserAppTheme = temaEscuro ? AppTheme.Dark : AppTheme.Light;
+
+        // Salva a escolha
+        Preferences.Set(TemaSalvoKey, temaEscuro);
     }
 
     private void OnSwitchNotificacoesToggled(object sender, ToggledEventArgs e)
     {
         notificacoesAtivas = e.Value;
-        // Aqui você pode adicionar lógica para habilitar/desabilitar notificações reais
+        // Lógica futura de notificações
     }
 }
