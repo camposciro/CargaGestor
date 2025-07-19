@@ -16,7 +16,7 @@ public partial class HomePage : ContentPage
 
     private async void OnListarCargasClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///ListarCargas");
+        await Shell.Current.GoToAsync("//ListarCargas");
     }
 
     private async void OnRelatoriosClicked(object sender, EventArgs e)

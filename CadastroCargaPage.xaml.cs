@@ -19,7 +19,7 @@ public partial class CadastroCargaPage : ContentPage
         string cte = entryNumeroCTE.Text;
         string pesoTexto = entryPeso.Text;
 
-        // Validação
+        // Validação dos campos
         if (string.IsNullOrWhiteSpace(data) ||
             string.IsNullOrWhiteSpace(cte) ||
             string.IsNullOrWhiteSpace(pesoTexto))
@@ -34,11 +34,21 @@ public partial class CadastroCargaPage : ContentPage
             return;
         }
 
-        // Futuramente: salvar no banco (data, cte, pesoKg, status)
+        // Criar objeto Carga com os dados informados
+        var novaCarga = new Carga
+        {
+            DataCarregamento = data,
+            NumeroCTE = cte,
+            PesoKg = pesoKg,
+            Status = "Em Percurso" // Status inicial fixo
+        };
+
+        // Adicionar nova carga no repositório estático
+        CargaRepository.AdicionarCarga(novaCarga);
 
         await DisplayAlert("Sucesso", "Carga salva com sucesso!", "OK");
 
-        // Volta automaticamente para a página principal (Home)
-        await Shell.Current.GoToAsync("//Home");
+        // Navegar para a página de listar cargas
+        await Shell.Current.GoToAsync("//ListarCargas");
     }
 }
