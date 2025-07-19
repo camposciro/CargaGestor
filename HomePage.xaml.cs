@@ -16,17 +16,17 @@ public partial class HomePage : ContentPage
 
     private async void OnListarCargasClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Em breve", "Funcionalidade de listar cargas será implementada.", "OK");
+        await Shell.Current.GoToAsync("///ListarCargas");
     }
 
     private async void OnRelatoriosClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Em breve", "Funcionalidade de relatórios será implementada.", "OK");
+        await Shell.Current.GoToAsync("///Relatorios");
     }
 
     private async void OnControleStatusClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Em breve", "Funcionalidade de controle de status será implementada.", "OK");
+        await Shell.Current.GoToAsync("///ControleStatus");
     }
 
     private async void OnConfiguracoesClicked(object sender, EventArgs e)
@@ -36,7 +36,7 @@ public partial class HomePage : ContentPage
 
     private async void OnAjudaClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Ajuda", "Para suporte, entre em contato com o desenvolvedor.", "OK");
+        await Shell.Current.GoToAsync("///Ajuda");
     }
 
     private async void OnSairClicked(object sender, EventArgs e)

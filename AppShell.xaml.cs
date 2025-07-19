@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Controls;
-using CargaGestor;
 
 namespace CargaGestor;
 
@@ -9,11 +8,15 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        // Registra rotas (opcional, pois usamos ShellContent com nome e rota)
+        // Registrar rotas extras que podem ser usadas na navegação programática
         Routing.RegisterRoute("Home", typeof(HomePage));
         Routing.RegisterRoute("CadastroCarga", typeof(CadastroCargaPage));
         Routing.RegisterRoute("Configuracoes", typeof(ConfigPage));
         Routing.RegisterRoute("Login", typeof(TelaLoginPage));
+        Routing.RegisterRoute("ListarCargas", typeof(ListarCargasPage));
+        Routing.RegisterRoute("Relatorios", typeof(RelatoriosPage));
+        Routing.RegisterRoute("ControleStatus", typeof(ControleStatusPage));
+        Routing.RegisterRoute("Ajuda", typeof(AjudaPage));
 
         AtualizarRotasPorLogin();
     }
@@ -25,7 +28,11 @@ public partial class AppShell : Shell
             menuLogin.IsVisible = false;
             menuHome.IsVisible = true;
             menuCadastro.IsVisible = true;
+            menuListarCargas.IsVisible = true;
+            menuRelatorios.IsVisible = true;
+            menuControleStatus.IsVisible = true;
             menuConfiguracoes.IsVisible = true;
+            menuAjuda.IsVisible = true;
 
             CurrentItem = menuHome;
         }
@@ -34,7 +41,11 @@ public partial class AppShell : Shell
             menuLogin.IsVisible = true;
             menuHome.IsVisible = false;
             menuCadastro.IsVisible = false;
+            menuListarCargas.IsVisible = false;
+            menuRelatorios.IsVisible = false;
+            menuControleStatus.IsVisible = false;
             menuConfiguracoes.IsVisible = false;
+            menuAjuda.IsVisible = false;
 
             CurrentItem = menuLogin;
         }
@@ -46,26 +57,16 @@ public partial class AppShell : Shell
         if (confirmar)
         {
             Session.UsuarioLogado = false;
-
-            if (Shell.Current is AppShell shell)
-            {
-                shell.AtualizarRotasPorLogin();
-
-                // Navegar para login limpando histórico
-                await Shell.Current.GoToAsync("//Login");
-            }
+            AtualizarRotasPorLogin();
+            await Shell.Current.GoToAsync("//Login");
         }
     }
-
 
     public async Task LogoutAsync()
     {
         Session.UsuarioLogado = false;
-
         AtualizarRotasPorLogin();
-
-        // Evita o erro de "ShellItem não encontrado"
-        await Task.Delay(100); // dá tempo de trocar o item antes de navegar
+        await Task.Delay(100); // Espera para garantir atualização antes de navegar
         await GoToAsync("//Login");
     }
 }

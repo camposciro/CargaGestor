@@ -60,28 +60,50 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Helpers\**" />
+	  <AndroidResource Remove="Pages\**" />
+	  <Compile Remove="Helpers\**" />
+	  <Compile Remove="Pages\**" />
+	  <EmbeddedResource Remove="Helpers\**" />
+	  <EmbeddedResource Remove="Pages\**" />
+	  <MauiCss Remove="Helpers\**" />
+	  <MauiCss Remove="Pages\**" />
+	  <MauiXaml Remove="Helpers\**" />
+	  <MauiXaml Remove="Pages\**" />
+	  <None Remove="Helpers\**" />
+	  <None Remove="Pages\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AjudaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CadastroCargaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ConfigPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ControleStatusPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ListarCargasPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="RelatoriosPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="TelaLoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Helpers\" />
-	  <Folder Include="Pages\" />
 	</ItemGroup>
 
 </Project>

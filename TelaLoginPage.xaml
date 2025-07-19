@@ -3,16 +3,42 @@
     x:Class="CargaGestor.TelaLoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Login">
+    Title="Login"
+    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
 
     <VerticalStackLayout Padding="30" Spacing="20">
-        <Label Text="Bem-vindo!" FontSize="32" HorizontalOptions="Center" />
+        <Label Text="Bem-vindo!" FontSize="32" HorizontalOptions="Center"
+               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
 
-        <Entry x:Name="entryUsuario" Placeholder="Usuário" />
-        <Entry x:Name="entrySenha" Placeholder="Senha" IsPassword="True" />
+        <Entry 
+            x:Name="entryUsuario" 
+            Placeholder="Usuário" 
+            PlaceholderColor="{StaticResource Gray400}"
+            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+            BackgroundColor="Transparent" />
 
-        <Button Text="Entrar" Clicked="OnEntrarClicked" />
+        <Entry 
+            x:Name="entrySenha" 
+            Placeholder="Senha" 
+            IsPassword="True"
+            PlaceholderColor="{StaticResource Gray400}"
+            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+            BackgroundColor="Transparent" />
+
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Switch x:Name="switchSalvarLogin" />
+            <Label Text="Salvar login" VerticalOptions="Center"
+                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        </HorizontalStackLayout>
+
+        <Button 
+            Text="Entrar" 
+            Clicked="OnEntrarClicked"
+            BackgroundColor="{StaticResource Primary}" 
+            TextColor="White"
+            CornerRadius="8"
+            HeightRequest="50"
+            FontAttributes="Bold" />
     </VerticalStackLayout>
 
 </ContentPage>
-

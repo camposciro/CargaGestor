@@ -1,54 +1,24 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CargaGestor.ConfigPage"
-             Title="Configurações"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CargaGestor.ConfigPage"
+    Title="Configurações">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="30" VerticalOptions="Start" >
+    <StackLayout Padding="20" Spacing="20">
 
-            <Label Text="Configurações"
-                   FontSize="32"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="{DynamicResource PrimaryTextColor}" />
+        <Label Text="Configurações" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center" />
 
-            <!-- Modo Escuro -->
-            <HorizontalStackLayout Spacing="15" VerticalOptions="Center" >
-                <Label Text="Modo Escuro"
-                       FontSize="20"
-                       VerticalOptions="Center"
-                       TextColor="{DynamicResource PrimaryTextColor}" />
-                <Switch x:Name="switchModoEscuro" Toggled="OnSwitchModoEscuroToggled" />
-            </HorizontalStackLayout>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="15">
+            <Label Text="Modo Escuro" VerticalOptions="Center" FontSize="18" />
+            <Switch x:Name="switchModoEscuro" Toggled="OnSwitchModoEscuroToggled" HorizontalOptions="EndAndExpand" />
+        </StackLayout>
 
-            <!-- Notificações -->
-            <HorizontalStackLayout Spacing="15" VerticalOptions="Center" >
-                <Label Text="Notificações"
-                       FontSize="20"
-                       VerticalOptions="Center"
-                       TextColor="{DynamicResource PrimaryTextColor}" />
-                <Switch x:Name="switchNotificacoes" Toggled="OnSwitchNotificacoesToggled" />
-            </HorizontalStackLayout>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="15">
+            <Label Text="Notificações" VerticalOptions="Center" FontSize="18" />
+            <Switch x:Name="switchNotificacoes" Toggled="OnSwitchNotificacoesToggled" HorizontalOptions="EndAndExpand" />
+        </StackLayout>
 
-            <!-- Idioma -->
-            <VerticalStackLayout>
-                <Label Text="Idioma"
-                       FontSize="20"
-                       TextColor="{DynamicResource PrimaryTextColor}" />
-                <Picker x:Name="pickerIdioma"
-                        Title="Selecione o idioma"
-                        SelectedIndexChanged="OnIdiomaChanged">
-                    <Picker.Items>
-                        <x:String>Português</x:String>
-                        <x:String>Inglês</x:String>
-                        <x:String>Espanhol</x:String>
-                    </Picker.Items>
-                </Picker>
-            </VerticalStackLayout>
-
-        </VerticalStackLayout>
-    </ScrollView>
+    </StackLayout>
 
 </ContentPage>
