@@ -47,7 +47,7 @@
         <ShellContent
             x:Name="menuRelatorios"
             Title="Relatórios"
-            ContentTemplate="{DataTemplate local:RelatoriosPage}"
+            ContentTemplate="{DataTemplate local:RelatorioGanhosPage}"
             Route="Relatorios" />
     </FlyoutItem>
 

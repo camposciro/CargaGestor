@@ -14,7 +14,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("Configuracoes", typeof(ConfigPage));
         Routing.RegisterRoute("Login", typeof(TelaLoginPage));
         Routing.RegisterRoute("ListarCargas", typeof(ListarCargasPage));
-        Routing.RegisterRoute("Relatorios", typeof(RelatoriosPage));
+        Routing.RegisterRoute("Relatorios", typeof(RelatorioGanhosPage));
         Routing.RegisterRoute("ControleStatus", typeof(ControleStatusPage));
         Routing.RegisterRoute("Ajuda", typeof(AjudaPage));
         Routing.RegisterRoute(nameof(EditarCargaPage), typeof(EditarCargaPage));

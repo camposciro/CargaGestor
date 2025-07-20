@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    x:Class="CargaGestor.RelatorioGanhosPage"
+    Title="Relatório de Ganhos">
+
+    <Grid Padding="15" RowDefinitions="Auto,Auto,*,Auto" RowSpacing="10">
+
+        <!-- Resumo geral -->
+        <Frame Grid.Row="0" Padding="10" CornerRadius="8" BackgroundColor="{AppThemeBinding Light=#E0F7FA, Dark=#004D40}">
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="CenterAndExpand">
+
+                <VerticalStackLayout HorizontalOptions="CenterAndExpand">
+                    <Label Text="Total Cargas" FontAttributes="Bold" FontSize="16" TextColor="Black" />
+                    <Label x:Name="lblTotalCargas" Text="0" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout HorizontalOptions="CenterAndExpand">
+                    <Label Text="Ganhos (R$)" FontAttributes="Bold" FontSize="16" TextColor="Black" />
+                    <Label x:Name="lblTotalGanhos" Text="0,00" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+        </Frame>
+
+        <!-- Filtros -->
+        <HorizontalStackLayout Grid.Row="1" Spacing="10" VerticalOptions="Center">
+            <DatePicker x:Name="datePickerInicio" Date="{x:Static sys:DateTime.Today}" HorizontalOptions="FillAndExpand" />
+            <DatePicker x:Name="datePickerFim" Date="{x:Static sys:DateTime.Today}" HorizontalOptions="FillAndExpand" />
+            <Button Text="Filtrar" Clicked="OnFiltrarClicked" WidthRequest="100" />
+        </HorizontalStackLayout>
+
+        <!-- Lista de cargas filtradas -->
+        <CollectionView Grid.Row="2" x:Name="collectionViewRelatorio" SelectionMode="None" BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" Padding="10" CornerRadius="6" BackgroundColor="{AppThemeBinding Light=#F0F4F4, Dark=#263238}">
+                        <Grid ColumnDefinitions="*, *, *, *" RowDefinitions="Auto">
+
+                            <Label Text="{Binding DataCarregamento, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="0" HorizontalTextAlignment="Start" />
+                            <Label Text="{Binding GanhoLiquido, StringFormat='R$ {0:F2}'}" Grid.Column="1" HorizontalTextAlignment="Center" />
+                            <Label Text="{Binding ValeOpcao}" Grid.Column="2" HorizontalTextAlignment="Center" />
+                            <Label Text="{Binding Status}" Grid.Column="3" HorizontalTextAlignment="End" />
+
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Botão limpar filtros -->
+        <Button Grid.Row="3" Text="Limpar Filtros" Clicked="OnLimparFiltrosClicked" Margin="0,10,0,0" />
+
+    </Grid>
+</ContentPage>

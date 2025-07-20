@@ -51,6 +51,9 @@ public class Carga : INotifyPropertyChanged
             {
                 pesoKg = value;
                 OnPropertyChanged();
+                // Também disparar mudança nos ganhos que dependem do peso
+                OnPropertyChanged(nameof(GanhoBruto));
+                OnPropertyChanged(nameof(GanhoLiquido));
             }
         }
     }
@@ -77,9 +80,17 @@ public class Carga : INotifyPropertyChanged
             {
                 valeOpcao = value;
                 OnPropertyChanged();
+                // O ganho líquido depende do vale, então atualizar também
+                OnPropertyChanged(nameof(GanhoLiquido));
             }
         }
     }
+
+    // Propriedade calculada do ganho bruto conforme fórmula Peso * 120 * 0,00011
+    public double GanhoBruto => PesoKg * 120 * 0.00011;
+
+    // Propriedade calculada do ganho líquido: desconta R$80 se "Com Vale"
+    public double GanhoLiquido => ValeOpcao == "Com Vale" ? GanhoBruto - 80 : GanhoBruto;
 
     protected void OnPropertyChanged([CallerMemberName] string? nomePropriedade = null)
     {
