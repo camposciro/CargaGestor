@@ -5,7 +5,7 @@
              Title="Cadastrar Carga">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="FillAndExpand">
 
             <Label Text="Cadastro de Carga" FontSize="24" HorizontalOptions="Center" />
 
@@ -15,7 +15,19 @@
             <Entry x:Name="entryNumeroCTE" Placeholder="Número do CTE" Keyboard="Numeric" />
             <Entry x:Name="entryPeso" Placeholder="Peso (kg)" Keyboard="Numeric" />
 
+            <Label Text="Status" FontAttributes="Bold" />
+            <Picker x:Name="pickerStatus" Title="Selecione o status">
+                <Picker.Items>
+                    <x:String>Em Viagem</x:String>
+                    <x:String>Aguardando Descarga</x:String>
+                    <x:String>Finalizada</x:String>
+                </Picker.Items>
+            </Picker>
+
             <Button Text="Salvar Carga" Clicked="OnSalvarClicked" />
+
+            <!-- Botão Sair -->
+            <Button Text="Sair" BackgroundColor="#D72631" TextColor="White" Clicked="OnSairClicked" />
 
         </VerticalStackLayout>
     </ScrollView>

@@ -1,4 +1,6 @@
-﻿namespace CargaGestor;
+﻿using Microsoft.Maui.Controls;
+
+namespace CargaGestor;
 
 public partial class CadastroCargaPage : ContentPage
 {
@@ -10,6 +12,7 @@ public partial class CadastroCargaPage : ContentPage
         Loaded += (s, e) =>
         {
             entryDataCarregamento.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            pickerStatus.SelectedIndex = 0; // Seleciona "Em Viagem" por padrão
         };
     }
 
@@ -18,11 +21,13 @@ public partial class CadastroCargaPage : ContentPage
         string data = entryDataCarregamento.Text;
         string cte = entryNumeroCTE.Text;
         string pesoTexto = entryPeso.Text;
+        string status = pickerStatus.SelectedItem as string;
 
         // Validação dos campos
         if (string.IsNullOrWhiteSpace(data) ||
             string.IsNullOrWhiteSpace(cte) ||
-            string.IsNullOrWhiteSpace(pesoTexto))
+            string.IsNullOrWhiteSpace(pesoTexto) ||
+            string.IsNullOrWhiteSpace(status))
         {
             await DisplayAlert("Erro", "Preencha todos os campos obrigatórios.", "OK");
             return;
@@ -40,7 +45,7 @@ public partial class CadastroCargaPage : ContentPage
             DataCarregamento = data,
             NumeroCTE = cte,
             PesoKg = pesoKg,
-            Status = "Em Percurso" // Status inicial fixo
+            Status = status
         };
 
         // Adicionar nova carga no repositório estático
@@ -50,5 +55,11 @@ public partial class CadastroCargaPage : ContentPage
 
         // Navegar para a página de listar cargas
         await Shell.Current.GoToAsync("//ListarCargas");
+    }
+
+    private async void OnSairClicked(object sender, EventArgs e)
+    {
+        // Voltar para a página principal (Home)
+        await Shell.Current.GoToAsync("//Home");
     }
 }
