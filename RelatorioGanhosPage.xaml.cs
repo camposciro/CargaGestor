@@ -7,33 +7,33 @@ namespace CargaGestor;
 
 public partial class RelatorioGanhosPage : ContentPage
 {
-    private ObservableCollection<Carga> cargasFiltradas = new ObservableCollection<Carga>();
+    private ObservableCollection<CargaComGanhos> cargasFiltradas = new ObservableCollection<CargaComGanhos>();
 
     public RelatorioGanhosPage()
     {
         InitializeComponent();
 
-        // Define o intervalo de datas padrão
         datePickerInicio.Date = DateTime.Today.AddMonths(-1);
         datePickerFim.Date = DateTime.Today;
 
-        // Associa a lista filtrada ao CollectionView
         collectionViewRelatorio.ItemsSource = cargasFiltradas;
     }
 
-    // Atualiza sempre que a página aparece
     protected override void OnAppearing()
     {
         base.OnAppearing();
         AtualizarRelatorio();
     }
 
-    private void AtualizarRelatorio()
+    private void AtualizarRelatorio(string filtroTexto = "")
     {
-        // Filtra as cargas dentro do intervalo de datas
+        filtroTexto = filtroTexto?.ToLower() ?? "";
+
         var cargas = CargaRepository.Cargas.Where(c =>
             c.DataCarregamento.Date >= datePickerInicio.Date &&
-            c.DataCarregamento.Date <= datePickerFim.Date).ToList();
+            c.DataCarregamento.Date <= datePickerFim.Date &&
+            (c.NumeroCTE.ToLower().Contains(filtroTexto) || c.Status.ToLower().Contains(filtroTexto))
+        ).ToList();
 
         cargasFiltradas.Clear();
 
@@ -70,13 +70,19 @@ public partial class RelatorioGanhosPage : ContentPage
         lblTotalGanhos.Text = totalGanhos.ToString("F2");
     }
 
+    private void OnFiltroTextChanged(object sender, TextChangedEventArgs e)
+    {
+        AtualizarRelatorio(e.NewTextValue);
+    }
+
     private void OnFiltrarClicked(object sender, EventArgs e)
     {
-        AtualizarRelatorio();
+        AtualizarRelatorio(entryFiltro.Text);
     }
 
     private void OnLimparFiltrosClicked(object sender, EventArgs e)
     {
+        entryFiltro.Text = string.Empty;
         datePickerInicio.Date = DateTime.Today.AddMonths(-1);
         datePickerFim.Date = DateTime.Today;
         AtualizarRelatorio();
