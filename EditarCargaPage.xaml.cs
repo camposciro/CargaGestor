@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
+using System.Globalization;
 
 namespace CargaGestor;
 
@@ -12,12 +13,12 @@ public partial class EditarCargaPage : ContentPage
         InitializeComponent();
         this.carga = carga;
 
-        // Preencher campos com dados existentes
+        // Preenche os campos com os dados existentes
         entryNumeroCTE.Text = carga.NumeroCTE;
         datePickerDataCarregamento.Date = carga.DataCarregamento;
-        entryPesoKg.Text = carga.PesoKg.ToString("F2");
+        entryPesoKg.Text = carga.PesoKg.ToString("F2", CultureInfo.InvariantCulture);
 
-        // Selecionar no picker o status atual da carga
+        // Define o status atual no Picker
         switch (carga.Status)
         {
             case "Em Viagem":
@@ -33,30 +34,49 @@ public partial class EditarCargaPage : ContentPage
                 pickerStatus.SelectedIndex = -1;
                 break;
         }
+
+        // Define a opção atual de Vale
+        switch (carga.ValeOpcao)
+        {
+            case "Sem Vale":
+                pickerValeOpcao.SelectedIndex = 0;
+                break;
+            case "Com Vale":
+                pickerValeOpcao.SelectedIndex = 1;
+                break;
+            default:
+                pickerValeOpcao.SelectedIndex = -1;
+                break;
+        }
     }
 
     private async void OnSalvarClicked(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(entryNumeroCTE.Text) ||
             string.IsNullOrWhiteSpace(entryPesoKg.Text) ||
-            pickerStatus.SelectedIndex == -1)
+            pickerStatus.SelectedIndex == -1 ||
+            pickerValeOpcao.SelectedIndex == -1)
         {
-            await DisplayAlert("Erro", "Preencha todos os campos e selecione um status.", "OK");
+            await DisplayAlert("Erro", "Preencha todos os campos corretamente.", "OK");
             return;
         }
 
         carga.NumeroCTE = entryNumeroCTE.Text;
         carga.DataCarregamento = datePickerDataCarregamento.Date;
 
-        if (double.TryParse(entryPesoKg.Text.Replace(",", "."), System.Globalization.CultureInfo.InvariantCulture, out double peso))
+        // Conversão segura do peso
+        if (double.TryParse(entryPesoKg.Text.Replace(",", "."), CultureInfo.InvariantCulture, out double peso))
+        {
             carga.PesoKg = peso;
+        }
         else
         {
-            await DisplayAlert("Erro", "Peso inválido. Use formato numérico.", "OK");
+            await DisplayAlert("Erro", "Peso inválido. Use apenas números (ex: 41500 ou 41500,50).", "OK");
             return;
         }
 
         carga.Status = pickerStatus.Items[pickerStatus.SelectedIndex];
+        carga.ValeOpcao = pickerValeOpcao.Items[pickerValeOpcao.SelectedIndex];
 
         await Shell.Current.GoToAsync(".."); // Voltar para a página anterior
     }

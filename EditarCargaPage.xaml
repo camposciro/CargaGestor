@@ -26,6 +26,15 @@
                 </Picker.Items>
             </Picker>
 
+            <!-- NOVO CAMPO: Vale -->
+            <Label Text="Vale" FontAttributes="Bold" />
+            <Picker x:Name="pickerValeOpcao" Title="Selecione uma opção">
+                <Picker.Items>
+                    <x:String>Sem Vale</x:String>
+                    <x:String>Com Vale</x:String>
+                </Picker.Items>
+            </Picker>
+
             <Button Text="Salvar" Clicked="OnSalvarClicked" />
             <Button Text="Cancelar" Clicked="OnCancelarClicked" BackgroundColor="Gray" TextColor="White" />
 

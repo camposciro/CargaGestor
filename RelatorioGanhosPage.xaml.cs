@@ -19,7 +19,12 @@ public partial class RelatorioGanhosPage : ContentPage
 
         // Associa a lista filtrada ao CollectionView
         collectionViewRelatorio.ItemsSource = cargasFiltradas;
+    }
 
+    // Atualiza sempre que a página aparece
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
         AtualizarRelatorio();
     }
 
