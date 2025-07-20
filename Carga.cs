@@ -10,6 +10,7 @@ public class Carga : INotifyPropertyChanged
     private DateTime dataCarregamento;
     private double pesoKg;
     private string status;
+    private string valeOpcao;
 
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -62,6 +63,19 @@ public class Carga : INotifyPropertyChanged
             if (status != value)
             {
                 status = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public string ValeOpcao
+    {
+        get => valeOpcao;
+        set
+        {
+            if (valeOpcao != value)
+            {
+                valeOpcao = value;
                 OnPropertyChanged();
             }
         }

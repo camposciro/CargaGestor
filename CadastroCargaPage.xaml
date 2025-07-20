@@ -28,6 +28,15 @@
                     </Picker.Items>
                 </Picker>
 
+                <Label Text="Vale" FontAttributes="Bold" />
+                <Picker x:Name="pickerVale" Title="Selecione">
+                    <Picker.Items>
+                        <x:String>Com Vale</x:String>
+                        <x:String>Sem Vale</x:String>
+                    </Picker.Items>
+                </Picker>
+
+
             </VerticalStackLayout>
         </ScrollView>
 

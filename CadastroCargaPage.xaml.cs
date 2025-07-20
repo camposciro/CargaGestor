@@ -21,10 +21,12 @@ public partial class CadastroCargaPage : ContentPage
         string cte = entryNumeroCTE.Text;
         string pesoTexto = entryPeso.Text;
         string status = pickerStatus.SelectedItem as string;
+        string valeOpcao = pickerVale.SelectedItem as string;
 
         if (string.IsNullOrWhiteSpace(cte) ||
             string.IsNullOrWhiteSpace(pesoTexto) ||
-            string.IsNullOrWhiteSpace(status))
+            string.IsNullOrWhiteSpace(status) ||
+            string.IsNullOrWhiteSpace(valeOpcao))
         {
             await DisplayAlert("Erro", "Preencha todos os campos obrigatórios.", "OK");
             return;
@@ -41,7 +43,8 @@ public partial class CadastroCargaPage : ContentPage
             NumeroCTE = cte,
             DataCarregamento = datePickerDataCarregamento.Date,
             PesoKg = pesoKg,
-            Status = status
+            Status = status,
+            ValeOpcao = pickerVale.SelectedItem as string  // Corrigido aqui
         };
 
         CargaRepository.AdicionarCarga(novaCarga);
@@ -58,6 +61,7 @@ public partial class CadastroCargaPage : ContentPage
         entryNumeroCTE.Text = string.Empty;
         entryPeso.Text = string.Empty;
         pickerStatus.SelectedIndex = 0;
+        pickerVale.SelectedIndex = 0; // ✅ Resetando o picker do Vale
         datePickerDataCarregamento.Date = DateTime.Now;
     }
 
