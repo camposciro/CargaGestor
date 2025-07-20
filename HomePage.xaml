@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="CargaGestor.HomePage"
     Title="CargaGestor - Menu Principal"
-    BackgroundColor="#f0f4f8">
+    BackgroundColor="{AppThemeBinding Light=#f0f4f8, Dark=#121212}">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
@@ -14,19 +13,19 @@
                 FontSize="36"
                 FontAttributes="Bold"
                 HorizontalOptions="Center"
-                TextColor="#333" />
+                TextColor="{AppThemeBinding Light=#333333, Dark=#eeeeee}" />
 
             <Label
                 Text="Gerencie suas cargas com eficiência"
                 FontSize="18"
                 HorizontalOptions="Center"
-                TextColor="#666" />
+                TextColor="{AppThemeBinding Light=#666666, Dark=#cccccc}" />
 
             <!-- Botões principais -->
             <Button
                 Text="🆕 Cadastrar Nova Carga"
                 FontSize="20"
-                BackgroundColor="#01A58D"
+                BackgroundColor="{AppThemeBinding Light=#01A58D, Dark=#028090}"
                 TextColor="White"
                 CornerRadius="12"
                 HeightRequest="60"
@@ -35,7 +34,7 @@
             <Button
                 Text="📋 Listar Cargas"
                 FontSize="20"
-                BackgroundColor="#028090"
+                BackgroundColor="{AppThemeBinding Light=#028090, Dark=#01A58D}"
                 TextColor="White"
                 CornerRadius="12"
                 HeightRequest="60"
@@ -44,7 +43,7 @@
             <Button
                 Text="📈 Relatórios de Ganhos"
                 FontSize="20"
-                BackgroundColor="#05668D"
+                BackgroundColor="{AppThemeBinding Light=#05668D, Dark=#054759}"
                 TextColor="White"
                 CornerRadius="12"
                 HeightRequest="60"
@@ -53,7 +52,7 @@
             <Button
                 Text="⚙️ Configurações"
                 FontSize="20"
-                BackgroundColor="#01A58D"
+                BackgroundColor="{AppThemeBinding Light=#01A58D, Dark=#028090}"
                 TextColor="White"
                 CornerRadius="12"
                 HeightRequest="60"
@@ -62,7 +61,7 @@
             <Button
                 Text="🚪 Sair"
                 FontSize="20"
-                BackgroundColor="#D72631"
+                BackgroundColor="{AppThemeBinding Light=#D72631, Dark=#b22222}"
                 TextColor="White"
                 CornerRadius="12"
                 HeightRequest="60"

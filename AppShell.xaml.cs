@@ -31,9 +31,7 @@ public partial class AppShell : Shell
             menuCadastro.IsVisible = true;
             menuListarCargas.IsVisible = true;
             menuRelatorios.IsVisible = true;
-            menuControleStatus.IsVisible = true;
             menuConfiguracoes.IsVisible = true;
-            menuAjuda.IsVisible = true;
 
             CurrentItem = menuHome;
         }
@@ -44,9 +42,7 @@ public partial class AppShell : Shell
             menuCadastro.IsVisible = false;
             menuListarCargas.IsVisible = false;
             menuRelatorios.IsVisible = false;
-            menuControleStatus.IsVisible = false;
             menuConfiguracoes.IsVisible = false;
-            menuAjuda.IsVisible = false;
 
             CurrentItem = menuLogin;
         }
