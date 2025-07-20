@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CargaGestor.EditarCargaPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Editar Carga">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="FillAndExpand">
+
+            <Label Text="Número do CTE" FontAttributes="Bold" />
+            <Entry x:Name="entryNumeroCTE" Placeholder="Número do CTE" />
+
+            <Label Text="Data do Carregamento" FontAttributes="Bold" />
+            <DatePicker x:Name="datePickerDataCarregamento" />
+
+            <Label Text="Peso (kg)" FontAttributes="Bold" />
+            <Entry x:Name="entryPesoKg" Placeholder="Peso (kg)" Keyboard="Numeric" />
+
+            <Label Text="Status" FontAttributes="Bold" />
+            <Picker x:Name="pickerStatus" Title="Selecione o status">
+                <Picker.Items>
+                    <x:String>Em Viagem</x:String>
+                    <x:String>Aguardando Descarga</x:String>
+                    <x:String>Finalizada</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Button Text="Salvar" Clicked="OnSalvarClicked" />
+            <Button Text="Cancelar" Clicked="OnCancelarClicked" BackgroundColor="Gray" TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

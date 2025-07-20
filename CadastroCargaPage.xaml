@@ -10,7 +10,7 @@
             <Label Text="Cadastro de Carga" FontSize="24" HorizontalOptions="Center" />
 
             <Label Text="Data e hora do carregamento" FontAttributes="Bold" />
-            <Entry x:Name="entryDataCarregamento" IsReadOnly="True" />
+            <DatePicker x:Name="datePickerDataCarregamento" />
 
             <Entry x:Name="entryNumeroCTE" Placeholder="Número do CTE" Keyboard="Numeric" />
             <Entry x:Name="entryPeso" Placeholder="Peso (kg)" Keyboard="Numeric" />
@@ -25,8 +25,6 @@
             </Picker>
 
             <Button Text="Salvar Carga" Clicked="OnSalvarClicked" />
-
-            <!-- Botão Sair -->
             <Button Text="Sair" BackgroundColor="#D72631" TextColor="White" Clicked="OnSairClicked" />
 
         </VerticalStackLayout>

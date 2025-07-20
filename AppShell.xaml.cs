@@ -17,6 +17,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("Relatorios", typeof(RelatoriosPage));
         Routing.RegisterRoute("ControleStatus", typeof(ControleStatusPage));
         Routing.RegisterRoute("Ajuda", typeof(AjudaPage));
+        Routing.RegisterRoute(nameof(EditarCargaPage), typeof(EditarCargaPage));
 
         AtualizarRotasPorLogin();
     }
