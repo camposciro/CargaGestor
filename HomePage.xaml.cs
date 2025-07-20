@@ -24,19 +24,9 @@ public partial class HomePage : ContentPage
         await Shell.Current.GoToAsync("///Relatorios");
     }
 
-    private async void OnControleStatusClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///ControleStatus");
-    }
-
     private async void OnConfiguracoesClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("///Configuracoes");
-    }
-
-    private async void OnAjudaClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("///Ajuda");
     }
 
     private async void OnSairClicked(object sender, EventArgs e)

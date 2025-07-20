@@ -51,15 +51,6 @@
             Route="Relatorios" />
     </FlyoutItem>
 
-    <!-- Controle de Status -->
-    <FlyoutItem Title="Controle de Status" FlyoutDisplayOptions="AsSingleItem">
-        <ShellContent
-            x:Name="menuControleStatus"
-            Title="Controle de Status"
-            ContentTemplate="{DataTemplate local:ControleStatusPage}"
-            Route="ControleStatus" />
-    </FlyoutItem>
-
     <!-- Configurações -->
     <FlyoutItem Title="Configurações" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
@@ -67,15 +58,6 @@
             Title="Configurações"
             ContentTemplate="{DataTemplate local:ConfigPage}"
             Route="Configuracoes" />
-    </FlyoutItem>
-
-    <!-- Ajuda -->
-    <FlyoutItem Title="Ajuda" FlyoutDisplayOptions="AsSingleItem">
-        <ShellContent
-            x:Name="menuAjuda"
-            Title="Ajuda"
-            ContentTemplate="{DataTemplate local:AjudaPage}"
-            Route="Ajuda" />
     </FlyoutItem>
 
 </Shell>

@@ -51,15 +51,6 @@
                 Clicked="OnRelatoriosClicked" />
 
             <Button
-                Text="⏳ Controle de Status"
-                FontSize="20"
-                BackgroundColor="#028090"
-                TextColor="White"
-                CornerRadius="12"
-                HeightRequest="60"
-                Clicked="OnControleStatusClicked" />
-
-            <Button
                 Text="⚙️ Configurações"
                 FontSize="20"
                 BackgroundColor="#01A58D"
@@ -67,15 +58,6 @@
                 CornerRadius="12"
                 HeightRequest="60"
                 Clicked="OnConfiguracoesClicked" />
-
-            <Button
-                Text="❓ Ajuda / Suporte"
-                FontSize="20"
-                BackgroundColor="#05668D"
-                TextColor="White"
-                CornerRadius="12"
-                HeightRequest="60"
-                Clicked="OnAjudaClicked" />
 
             <Button
                 Text="🚪 Sair"
