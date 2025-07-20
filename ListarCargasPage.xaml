@@ -1,16 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="CargaGestor.ListarCargasPage"
     Title="Listar Cargas">
 
-    <VerticalStackLayout Padding="10" Spacing="10" VerticalOptions="FillAndExpand">
+    <Grid Padding="10"
+          RowDefinitions="Auto, *, Auto"
+          ColumnDefinitions="*">
 
         <!-- Campo para filtro -->
         <Entry
             x:Name="entryFiltro"
             Placeholder="Filtrar cargas por CTE ou Status..."
-            TextChanged="OnFiltroTextChanged" />
+            TextChanged="OnFiltroTextChanged"
+            Grid.Row="0"
+            Margin="0,0,0,10" />
 
         <!-- CollectionView com as cargas -->
         <CollectionView
@@ -18,7 +23,7 @@
             SelectionMode="Single"
             SelectionChanged="OnCargaSelecionada"
             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
-            VerticalOptions="FillAndExpand">
+            Grid.Row="1">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -37,7 +42,7 @@
                                 TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
 
                             <Label
-                                Text="{Binding DataCarregamento}"
+                                Text="{Binding DataCarregamento, StringFormat='Data: {0:dd/MM/yyyy}'}"
                                 FontSize="14"
                                 TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" />
 
@@ -60,33 +65,38 @@
         </CollectionView>
 
         <!-- Botões Editar, Excluir e Sair -->
-        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+        <!-- Botões Editar, Excluir e Sair -->
+        <HorizontalStackLayout
+    Spacing="12"
+    HorizontalOptions="Center"
+    Grid.Row="2"
+    Margin="0,10,0,0">
 
             <Button
-                x:Name="btnEditar"
-                Text="Editar"
-                Clicked="OnEditarClicked"
-                IsEnabled="False"
-                WidthRequest="120" />
+        x:Name="btnEditar"
+        Text="Editar"
+        Clicked="OnEditarClicked"
+        IsEnabled="False"
+        WidthRequest="110" />
 
             <Button
-                x:Name="btnExcluir"
-                Text="Excluir"
-                Clicked="OnExcluirClicked"
-                IsEnabled="False"
-                BackgroundColor="#D72631"
-                TextColor="White"
-                WidthRequest="120" />
+        x:Name="btnExcluir"
+        Text="Excluir"
+        Clicked="OnExcluirClicked"
+        IsEnabled="False"
+        BackgroundColor="#D72631"
+        TextColor="White"
+        WidthRequest="110" />
 
             <Button
-                Text="Sair"
-                Clicked="OnSairClicked"
-                BackgroundColor="#666"
-                TextColor="White"
-                WidthRequest="120" />
+        Text="Sair"
+        Clicked="OnSairClicked"
+        BackgroundColor="#666"
+        TextColor="White"
+        WidthRequest="110" />
 
         </HorizontalStackLayout>
 
-    </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>

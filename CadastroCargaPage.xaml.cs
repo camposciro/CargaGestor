@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using System;
 
 namespace CargaGestor;
 
@@ -7,12 +8,12 @@ public partial class CadastroCargaPage : ContentPage
     public CadastroCargaPage()
     {
         InitializeComponent();
+    }
 
-        Loaded += (s, e) =>
-        {
-            pickerStatus.SelectedIndex = 0;
-            datePickerDataCarregamento.Date = DateTime.Now;
-        };
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LimparCampos();
     }
 
     private async void OnSalvarClicked(object sender, EventArgs e)
@@ -46,7 +47,18 @@ public partial class CadastroCargaPage : ContentPage
         CargaRepository.AdicionarCarga(novaCarga);
 
         await DisplayAlert("Sucesso", "Carga salva com sucesso!", "OK");
+
+        LimparCampos();
+
         await Shell.Current.GoToAsync("//ListarCargas");
+    }
+
+    private void LimparCampos()
+    {
+        entryNumeroCTE.Text = string.Empty;
+        entryPeso.Text = string.Empty;
+        pickerStatus.SelectedIndex = 0;
+        datePickerDataCarregamento.Date = DateTime.Now;
     }
 
     private async void OnSairClicked(object sender, EventArgs e)
