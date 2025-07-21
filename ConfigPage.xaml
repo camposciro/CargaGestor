@@ -3,7 +3,8 @@
              x:Class="CargaGestor.ConfigPage"
              Title="Configurações">
 
-    <Grid Padding="10" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*">
+    <Grid Padding="10" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*">
+
         <!-- Modo escuro -->
         <Label Text="Modo Escuro" Grid.Row="0" VerticalOptions="Center" />
         <Switch x:Name="switchModoEscuro" Grid.Row="0" HorizontalOptions="End" Toggled="OnSwitchModoEscuroToggled" />
@@ -12,7 +13,9 @@
         <Label Text="Notificações" Grid.Row="1" VerticalOptions="Center" />
         <Switch x:Name="switchNotificacoes" Grid.Row="1" HorizontalOptions="End" Toggled="OnSwitchNotificacoesToggled" />
 
-        <!-- Removida opção idioma conforme pedido -->
+        <!-- Login com Biometria -->
+        <Label Text="Login com Biometria" Grid.Row="2" VerticalOptions="Center" />
+        <Switch x:Name="switchBiometria" Grid.Row="2" HorizontalOptions="End" Toggled="OnSwitchBiometriaToggled" />
 
     </Grid>
 

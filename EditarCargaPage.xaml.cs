@@ -13,12 +13,10 @@ public partial class EditarCargaPage : ContentPage
         InitializeComponent();
         this.carga = carga;
 
-        // Preenche os campos com os dados existentes
         entryNumeroCTE.Text = carga.NumeroCTE;
         datePickerDataCarregamento.Date = carga.DataCarregamento;
         entryPesoKg.Text = carga.PesoKg.ToString("F2", CultureInfo.InvariantCulture);
 
-        // Define o status atual no Picker
         switch (carga.Status)
         {
             case "Em Viagem":
@@ -35,7 +33,6 @@ public partial class EditarCargaPage : ContentPage
                 break;
         }
 
-        // Define a opção atual de Vale
         switch (carga.ValeOpcao)
         {
             case "Sem Vale":
@@ -64,7 +61,6 @@ public partial class EditarCargaPage : ContentPage
         carga.NumeroCTE = entryNumeroCTE.Text;
         carga.DataCarregamento = datePickerDataCarregamento.Date;
 
-        // Conversão segura do peso
         if (double.TryParse(entryPesoKg.Text.Replace(",", "."), CultureInfo.InvariantCulture, out double peso))
         {
             carga.PesoKg = peso;
@@ -78,11 +74,20 @@ public partial class EditarCargaPage : ContentPage
         carga.Status = pickerStatus.Items[pickerStatus.SelectedIndex];
         carga.ValeOpcao = pickerValeOpcao.Items[pickerValeOpcao.SelectedIndex];
 
-        await Shell.Current.GoToAsync(".."); // Voltar para a página anterior
+        bool sucesso = await CargaRepository.AtualizarCargaAsync(carga);
+        if (sucesso)
+        {
+            await DisplayAlert("Sucesso", "Carga atualizada com sucesso!", "OK");
+            await Shell.Current.GoToAsync("..");
+        }
+        else
+        {
+            await DisplayAlert("Erro", "Falha ao atualizar a carga na nuvem.", "OK");
+        }
     }
 
     private async void OnCancelarClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(".."); // Voltar sem salvar
+        await Shell.Current.GoToAsync("..");
     }
 }

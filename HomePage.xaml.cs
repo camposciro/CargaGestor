@@ -1,4 +1,4 @@
-﻿using CargaGestor;
+﻿using Microsoft.Maui.Controls;
 
 namespace CargaGestor;
 
@@ -11,7 +11,7 @@ public partial class HomePage : ContentPage
 
     private async void OnCadastrarCargaClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///CadastroCarga");
+        await Shell.Current.GoToAsync("//CadastroCarga");
     }
 
     private async void OnListarCargasClicked(object sender, EventArgs e)
@@ -21,12 +21,12 @@ public partial class HomePage : ContentPage
 
     private async void OnRelatoriosClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///Relatorios");
+        await Shell.Current.GoToAsync("//Relatorios");
     }
 
     private async void OnConfiguracoesClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///Configuracoes");
+        await Shell.Current.GoToAsync("//Configuracoes");
     }
 
     private async void OnSairClicked(object sender, EventArgs e)
@@ -34,8 +34,10 @@ public partial class HomePage : ContentPage
         bool confirmar = await DisplayAlert("Sair", "Deseja realmente sair?", "Sim", "Cancelar");
         if (confirmar)
         {
-            var shell = (AppShell)Shell.Current;
-            await shell.LogoutAsync();
+            if (Shell.Current is AppShell shell)
+            {
+                await shell.LogoutAsync();
+            }
         }
     }
 }

@@ -1,28 +1,37 @@
 ﻿using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CargaGestor;
 
 public partial class ListarCargasPage : ContentPage
 {
-    public ObservableCollection<Carga> Cargas => CargaRepository.Cargas;
-
-    private ObservableCollection<Carga> cargasFiltradas;
+    private ObservableCollection<Carga> cargasFiltradas = new ObservableCollection<Carga>();
     private Carga cargaSelecionada;
 
     public ListarCargasPage()
     {
         InitializeComponent();
 
-        cargasFiltradas = new ObservableCollection<Carga>(Cargas);
         collectionViewCargas.ItemsSource = cargasFiltradas;
 
         btnEditar.IsEnabled = false;
         btnExcluir.IsEnabled = false;
 
-        Cargas.CollectionChanged += (s, e) => AtualizarFiltro();
-        AtualizarFiltro();
+        entryFiltro.TextChanged += OnFiltroTextChanged;
+        collectionViewCargas.SelectionChanged += OnCargaSelecionada;
+
+        btnEditar.Clicked += OnEditarClicked;
+        btnExcluir.Clicked += OnExcluirClicked;
+        btnSair.Clicked += OnSairClicked;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await CargaRepository.CarregarCargasAsync();
+        AtualizarFiltro(entryFiltro.Text);
     }
 
     private void AtualizarFiltro(string filtro = "")
@@ -31,9 +40,9 @@ public partial class ListarCargasPage : ContentPage
 
         cargasFiltradas.Clear();
 
-        var filtradas = Cargas.Where(c =>
-            c.NumeroCTE.ToLower().Contains(filtro) ||
-            c.Status.ToLower().Contains(filtro));
+        var filtradas = CargaRepository.Cargas.Where(c =>
+            (c.NumeroCTE?.ToLower().Contains(filtro) ?? false) ||
+            (c.Status?.ToLower().Contains(filtro) ?? false));
 
         foreach (var carga in filtradas)
             cargasFiltradas.Add(carga);
@@ -62,7 +71,6 @@ public partial class ListarCargasPage : ContentPage
         if (cargaSelecionada == null)
             return;
 
-        // Navegar usando Navigation.PushAsync para poder passar o objeto diretamente no construtor
         await Navigation.PushAsync(new EditarCargaPage(cargaSelecionada));
     }
 
@@ -71,12 +79,19 @@ public partial class ListarCargasPage : ContentPage
         if (cargaSelecionada == null)
             return;
 
-        bool confirmar = await DisplayAlert("Excluir", $"Excluir carga {cargaSelecionada.NumeroCTE}?", "Sim", "Não");
+        bool confirmar = await DisplayAlert("Excluir", $"Deseja excluir a carga {cargaSelecionada.NumeroCTE}?", "Sim", "Não");
         if (!confirmar)
             return;
 
-        Cargas.Remove(cargaSelecionada);
-        AtualizarFiltro(entryFiltro.Text);
+        bool sucesso = await CargaRepository.ExcluirCargaAsync(cargaSelecionada);
+        if (sucesso)
+        {
+            AtualizarFiltro(entryFiltro.Text);
+        }
+        else
+        {
+            await DisplayAlert("Erro", "Falha ao excluir carga no Firebase.", "OK");
+        }
     }
 
     private async void OnSairClicked(object sender, EventArgs e)

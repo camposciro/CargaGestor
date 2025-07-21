@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using System.Threading.Tasks;
 
 namespace CargaGestor;
 
@@ -8,18 +9,27 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        // Registrar rotas extras que podem ser usadas na navegação programática
+        Routing.RegisterRoute("Login", typeof(TelaLoginPage));
         Routing.RegisterRoute("Home", typeof(HomePage));
         Routing.RegisterRoute("CadastroCarga", typeof(CadastroCargaPage));
-        Routing.RegisterRoute("Configuracoes", typeof(ConfigPage));
-        Routing.RegisterRoute("Login", typeof(TelaLoginPage));
         Routing.RegisterRoute("ListarCargas", typeof(ListarCargasPage));
         Routing.RegisterRoute("Relatorios", typeof(RelatorioGanhosPage));
+        Routing.RegisterRoute("Configuracoes", typeof(ConfigPage));
+        Routing.RegisterRoute(nameof(EditarCargaPage), typeof(EditarCargaPage));
         Routing.RegisterRoute("ControleStatus", typeof(ControleStatusPage));
         Routing.RegisterRoute("Ajuda", typeof(AjudaPage));
-        Routing.RegisterRoute(nameof(EditarCargaPage), typeof(EditarCargaPage));
 
         AtualizarRotasPorLogin();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (!Session.UsuarioLogado)
+        {
+            CurrentItem = menuLogin;
+        }
     }
 
     public void AtualizarRotasPorLogin()
@@ -48,22 +58,14 @@ public partial class AppShell : Shell
         }
     }
 
-    private async void OnSairClicked(object sender, EventArgs e)
-    {
-        bool confirmar = await DisplayAlert("Sair", "Deseja realmente sair?", "Sim", "Cancelar");
-        if (confirmar)
-        {
-            Session.UsuarioLogado = false;
-            AtualizarRotasPorLogin();
-            await Shell.Current.GoToAsync("//Login");
-        }
-    }
-
     public async Task LogoutAsync()
     {
         Session.UsuarioLogado = false;
+
         AtualizarRotasPorLogin();
-        await Task.Delay(100); // Espera para garantir atualização antes de navegar
-        await GoToAsync("//Login");
+
+        await Task.Delay(100);
+
+        CurrentItem = menuLogin;
     }
 }

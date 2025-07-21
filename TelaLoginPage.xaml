@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage
     x:Class="CargaGestor.TelaLoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -7,19 +7,22 @@
     BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
 
     <VerticalStackLayout Padding="30" Spacing="20">
-        <Label Text="Bem-vindo!" FontSize="32" HorizontalOptions="Center"
-               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        <Label
+            Text="Bem-vindo!"
+            FontSize="32"
+            HorizontalOptions="Center"
+            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
 
-        <Entry 
-            x:Name="entryUsuario" 
-            Placeholder="Usuário" 
+        <Entry
+            x:Name="entryUsuario"
+            Placeholder="Usuário"
             PlaceholderColor="{StaticResource Gray400}"
             TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
             BackgroundColor="Transparent" />
 
-        <Entry 
-            x:Name="entrySenha" 
-            Placeholder="Senha" 
+        <Entry
+            x:Name="entrySenha"
+            Placeholder="Senha"
             IsPassword="True"
             PlaceholderColor="{StaticResource Gray400}"
             TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
@@ -27,18 +30,19 @@
 
         <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
             <Switch x:Name="switchSalvarLogin" />
-            <Label Text="Salvar login" VerticalOptions="Center"
-                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+            <Label
+                Text="Salvar login"
+                VerticalOptions="Center"
+                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         </HorizontalStackLayout>
 
-        <Button 
-            Text="Entrar" 
+        <Button
+            Text="Entrar"
             Clicked="OnEntrarClicked"
-            BackgroundColor="{StaticResource Primary}" 
+            BackgroundColor="{StaticResource Primary}"
             TextColor="White"
             CornerRadius="8"
             HeightRequest="50"
             FontAttributes="Bold" />
     </VerticalStackLayout>
-
 </ContentPage>

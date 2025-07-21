@@ -94,6 +94,7 @@
                 WidthRequest="110" />
 
             <Button
+                x:Name="btnSair"
                 Text="Sair"
                 Clicked="OnSairClicked"
                 BackgroundColor="#666"

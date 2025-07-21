@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -14,7 +15,8 @@ public class Carga : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public int Id { get; set; }
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }  // Agora Id é int, chave primária local
 
     public string NumeroCTE
     {
@@ -51,7 +53,6 @@ public class Carga : INotifyPropertyChanged
             {
                 pesoKg = value;
                 OnPropertyChanged();
-                // Também disparar mudança nos ganhos que dependem do peso
                 OnPropertyChanged(nameof(GanhoBruto));
                 OnPropertyChanged(nameof(GanhoLiquido));
             }
@@ -80,16 +81,15 @@ public class Carga : INotifyPropertyChanged
             {
                 valeOpcao = value;
                 OnPropertyChanged();
-                // O ganho líquido depende do vale, então atualizar também
                 OnPropertyChanged(nameof(GanhoLiquido));
             }
         }
     }
 
-    // Propriedade calculada do ganho bruto conforme fórmula Peso * 120 * 0,00011
+    [Ignore]  // Ignore propriedades calculadas no banco
     public double GanhoBruto => PesoKg * 120 * 0.00011;
 
-    // Propriedade calculada do ganho líquido: desconta R$80 se "Com Vale"
+    [Ignore]
     public double GanhoLiquido => ValeOpcao == "Com Vale" ? GanhoBruto - 80 : GanhoBruto;
 
     protected void OnPropertyChanged([CallerMemberName] string? nomePropriedade = null)

@@ -36,7 +36,6 @@
                     </Picker.Items>
                 </Picker>
 
-
             </VerticalStackLayout>
         </ScrollView>
 

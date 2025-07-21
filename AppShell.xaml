@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Shell
     x:Class="CargaGestor.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:CargaGestor"
-    Title="CargaGestor">
+    xmlns:local="clr-namespace:CargaGestor">
 
-    <!-- Página de Login -->
+    <!-- Página de Login (visibilidade controlada via AppShell.cs) -->
     <FlyoutItem Title="Login" FlyoutDisplayOptions="AsSingleItem">
         <ShellContent
             x:Name="menuLogin"

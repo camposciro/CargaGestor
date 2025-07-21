@@ -18,8 +18,8 @@ public partial class CadastroCargaPage : ContentPage
 
     private async void OnSalvarClicked(object sender, EventArgs e)
     {
-        string cte = entryNumeroCTE.Text;
-        string pesoTexto = entryPeso.Text;
+        string cte = entryNumeroCTE.Text?.Trim() ?? string.Empty;
+        string pesoTexto = entryPeso.Text?.Trim() ?? string.Empty;
         string status = pickerStatus.SelectedItem as string;
         string valeOpcao = pickerVale.SelectedItem as string;
 
@@ -32,7 +32,7 @@ public partial class CadastroCargaPage : ContentPage
             return;
         }
 
-        if (!double.TryParse(pesoTexto.Replace(",", "."), out double pesoKg))
+        if (!double.TryParse(pesoTexto.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double pesoKg))
         {
             await DisplayAlert("Erro", "Peso inválido. Use apenas números.", "OK");
             return;
@@ -44,16 +44,21 @@ public partial class CadastroCargaPage : ContentPage
             DataCarregamento = datePickerDataCarregamento.Date,
             PesoKg = pesoKg,
             Status = status,
-            ValeOpcao = pickerVale.SelectedItem as string  // Corrigido aqui
+            ValeOpcao = valeOpcao
         };
 
-        CargaRepository.AdicionarCarga(novaCarga);
+        bool sucesso = await CargaRepository.AdicionarCargaAsync(novaCarga);
 
-        await DisplayAlert("Sucesso", "Carga salva com sucesso!", "OK");
-
-        LimparCampos();
-
-        await Shell.Current.GoToAsync("//ListarCargas");
+        if (sucesso)
+        {
+            await DisplayAlert("Sucesso", "Carga salva com sucesso!", "OK");
+            LimparCampos();
+            await Shell.Current.GoToAsync("//ListarCargas");
+        }
+        else
+        {
+            await DisplayAlert("Erro", "Falha ao salvar carga na nuvem.", "OK");
+        }
     }
 
     private void LimparCampos()
@@ -61,7 +66,7 @@ public partial class CadastroCargaPage : ContentPage
         entryNumeroCTE.Text = string.Empty;
         entryPeso.Text = string.Empty;
         pickerStatus.SelectedIndex = 0;
-        pickerVale.SelectedIndex = 0; // ✅ Resetando o picker do Vale
+        pickerVale.SelectedIndex = 0;
         datePickerDataCarregamento.Date = DateTime.Now;
     }
 
